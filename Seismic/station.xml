@@ -4,7 +4,7 @@
   <Sender>IRIS-DMC</Sender>
   <Module>IRIS WEB SERVICE: fdsnws-station | version: 1.1.34</Module>
   <ModuleURI>http://service.iris.edu/fdsnws/station/1/query?starttime=2015-01-01T00%3A00%3A00.000000&amp;endtime=2015-01-02T00%3A00%3A00.000000&amp;network=OO&amp;station=AXAS1&amp;channel=%2A&amp;level=response</ModuleURI>
-  <Created>2018-09-21T14:46:32</Created>
+  <Created>2018-09-21T16:05:48</Created>
   <Network code="OO" endDate="2500-12-31T23:59:59" restrictedStatus="open" startDate="2014-01-01T00:00:00">
     <Description>Ocean Observatories Initiative</Description>
     <TotalNumberStations>13</TotalNumberStations>
