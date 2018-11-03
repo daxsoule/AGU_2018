@@ -1,1 +1,0 @@
-What I would like to get done this weekend: Stop treading water and convert Aarons meta scraper to Emilios meta scraper-- I want URL: X, scenetag: "d5_p2_z0", type "static", startFrame: X, endFrame: X 
