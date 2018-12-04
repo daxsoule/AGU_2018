@@ -1,0 +1,1121 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{detide\_BOTPT\_DepthDiff}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{title-the-relationship-between-post--2015-eruption-deformation-and-seismicity-rates-since-the-2015-eruption-at-axial-seamount}{%
+\section{Title: The relationship between post- 2015 eruption deformation
+and seismicity rates since the 2015 eruption at Axial
+Seamount}\label{title-the-relationship-between-post--2015-eruption-deformation-and-seismicity-rates-since-the-2015-eruption-at-axial-seamount}}
+
+\hypertarget{authors-j.-natalie-d.-c.-soule-t.-j.-crone-w.-w.-chadwick-jr.-w.-s.-d.-wilcock}{%
+\section{Authors: J. Natalie, D. C. Soule, T. J. Crone, W. W. Chadwick
+Jr., W. S. D.
+Wilcock}\label{authors-j.-natalie-d.-c.-soule-t.-j.-crone-w.-w.-chadwick-jr.-w.-s.-d.-wilcock}}
+
+\hypertarget{botpt-data-detide-depthdifference}{%
+\paragraph{BOTPT Data detide
+DepthDifference}\label{botpt-data-detide-depthdifference}}
+
+\hypertarget{this-method-is-detailed-here-httpswww.pmel.noaa.goveoirsndiffs.html}{%
+\paragraph{This method is detailed here:
+https://www.pmel.noaa.gov/eoi/rsn/diffs.html}\label{this-method-is-detailed-here-httpswww.pmel.noaa.goveoirsndiffs.html}}
+
+    \hypertarget{abstract}{%
+\section{Abstract}\label{abstract}}
+
+\hypertarget{the-ocean-observatories-initiative-cabled-array-ooi-ca-provides-the-opportunity-to-use-new-approaches-to-observe-geological-processes-at-axial-seamount-an-active-submarine-volcano-on-the-juan-de-fuca-spreading-ridge-located-300-miles-off-the-coast-of-oregon.-the-ooi-ca-provides-a-suite-of-interdisciplinary-real-time-datasets-from-seismic-and-geodetic-networks-and-a-variety-of-instruments-in-two-hydrothermal-fields-with-which-we-can-examine-system-level-processes-governing-the-volcano-marine-environment.-the-geophysical-networks-comprise-4-pressuretilt-botpt-instruments-that-detect-the-rise-fall-and-tilt-of-the-seafloor-as-it-responds-to-the-movement-of-magma-within-the-crust-and-7-seismometers-to-monitor-earthquakes.-in-order-to-better-understand-the-patterns-of-magma-storage-and-delivery-beneath-the-axial-summit-caldera-and-provide-constraints-for-the-development-of-improved-predictive-models-we-are-examining-short-term-variations-in-the-rates-of-deformation-and-seismicity-and-how-well-they-co-vary-during-the-inter-eruption-time-period.-we-will-also-investigate-apparent-pauses-in-the-magma-supply-rate-when-the-rate-of-seismicity-and-deformation-have-both-dropped.-on-the-time-scale-of-years-seafloor-deformation-measurements-show-a-relatively-steady-rate-of-inflation-of-the-seafloor-between-eruptions-that-can-be-interpreted-as-reflecting-the-rate-that-magma-is-supplied-to-the-sub-caldera-magma-reservoir-nooner-and-chadwick-2016.-however-on-the-time-scale-of-weeks-to-months-the-rate-is-more-variable.-similarly-the-rate-of-earthquakes-detected-by-the-ooi-seismometer-network-also-varies-with-time.-it-was-very-low-immediately-after-the-2015-eruption-but-it-has-increased-markedly-over-the-past-year-and-based-on-the-observations-of-prior-eruptive-cycles-it-is-expected-to-increase-by-several-orders-of-magnitude-before-the-next-eruption.}{%
+\paragraph{The Ocean Observatories Initiative Cabled Array (OOI-CA)
+provides the opportunity to use new approaches to observe geological
+processes at Axial Seamount, an active submarine volcano on the Juan de
+Fuca spreading ridge located \textasciitilde{}300 miles off the coast of
+Oregon. The OOI-CA provides a suite of interdisciplinary real-time
+datasets from seismic and geodetic networks and a variety of instruments
+in two hydrothermal fields with which we can examine system-level
+processes governing the volcano-marine environment. The geophysical
+networks comprise 4 Pressure/Tilt (BOTPT) instruments that detect the
+rise, fall, and tilt of the seafloor as it responds to the movement of
+magma within the crust and 7 seismometers to monitor earthquakes. In
+order to better understand the patterns of magma storage and delivery
+beneath the Axial summit caldera and provide constraints for the
+development of improved predictive models, we are examining short-term
+variations in the rates of deformation and seismicity and how well they
+co-vary during the inter-eruption time period. We will also investigate
+apparent ``pauses'' in the magma supply rate when the rate of seismicity
+and deformation have both dropped. On the time-scale of years, seafloor
+deformation measurements show a relatively steady rate of inflation of
+the seafloor between eruptions that can be interpreted as reflecting the
+rate that magma is supplied to the sub-caldera magma reservoir (Nooner
+and Chadwick 2016). However, on the time-scale of weeks to months, the
+rate is more variable. Similarly, the rate of earthquakes detected by
+the OOI seismometer network also varies with time. It was very low
+immediately after the 2015 eruption, but it has increased markedly over
+the past year, and based on the observations of prior eruptive cycles,
+it is expected to increase by several orders of magnitude before the
+next
+eruption.}\label{the-ocean-observatories-initiative-cabled-array-ooi-ca-provides-the-opportunity-to-use-new-approaches-to-observe-geological-processes-at-axial-seamount-an-active-submarine-volcano-on-the-juan-de-fuca-spreading-ridge-located-300-miles-off-the-coast-of-oregon.-the-ooi-ca-provides-a-suite-of-interdisciplinary-real-time-datasets-from-seismic-and-geodetic-networks-and-a-variety-of-instruments-in-two-hydrothermal-fields-with-which-we-can-examine-system-level-processes-governing-the-volcano-marine-environment.-the-geophysical-networks-comprise-4-pressuretilt-botpt-instruments-that-detect-the-rise-fall-and-tilt-of-the-seafloor-as-it-responds-to-the-movement-of-magma-within-the-crust-and-7-seismometers-to-monitor-earthquakes.-in-order-to-better-understand-the-patterns-of-magma-storage-and-delivery-beneath-the-axial-summit-caldera-and-provide-constraints-for-the-development-of-improved-predictive-models-we-are-examining-short-term-variations-in-the-rates-of-deformation-and-seismicity-and-how-well-they-co-vary-during-the-inter-eruption-time-period.-we-will-also-investigate-apparent-pauses-in-the-magma-supply-rate-when-the-rate-of-seismicity-and-deformation-have-both-dropped.-on-the-time-scale-of-years-seafloor-deformation-measurements-show-a-relatively-steady-rate-of-inflation-of-the-seafloor-between-eruptions-that-can-be-interpreted-as-reflecting-the-rate-that-magma-is-supplied-to-the-sub-caldera-magma-reservoir-nooner-and-chadwick-2016.-however-on-the-time-scale-of-weeks-to-months-the-rate-is-more-variable.-similarly-the-rate-of-earthquakes-detected-by-the-ooi-seismometer-network-also-varies-with-time.-it-was-very-low-immediately-after-the-2015-eruption-but-it-has-increased-markedly-over-the-past-year-and-based-on-the-observations-of-prior-eruptive-cycles-it-is-expected-to-increase-by-several-orders-of-magnitude-before-the-next-eruption.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{o}{\PYZpc{}}\PY{k}{reset} \PYZhy{}f
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{} Load map of Axial caldera showing locations of BOTPT instruments (red circles)}
+         \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{Image}
+         \PY{n}{Image}\PY{p}{(}\PY{n}{url} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://oceanobservatories.org/wp\PYZhy{}content/uploads/2018/03/CEV\PYZhy{}OOI\PYZhy{}Cabled\PYZhy{}Array\PYZhy{}Axial\PYZhy{}8.5w\PYZhy{}300dpi.jpg}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}30}]:} <IPython.core.display.Image object>
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{Image}\PY{p}{(}\PY{n}{url}\PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://oceanobservatories.org/wp\PYZhy{}content/uploads/2015/10/PN3B\PYZus{}Cabled\PYZus{}Axial\PYZus{}Seamount.jpg}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}31}]:} <IPython.core.display.Image object>
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{Image}\PY{p}{(}\PY{n}{url} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://www.pmel.noaa.gov/eoi/rsn/Axial\PYZhy{}2017\PYZhy{}OOI\PYZhy{}caldera\PYZhy{}ed\PYZhy{}sm.png}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} <IPython.core.display.Image object>
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{Image}\PY{p}{(}\PY{n}{url} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://www.pmel.noaa.gov/eoi/rsn/Axial\PYZhy{}2017\PYZhy{}OOI\PYZhy{}zoom\PYZhy{}ed\PYZhy{}sm.png}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:} <IPython.core.display.Image object>
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{Image}\PY{p}{(}\PY{n}{url} \PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://www.pmel.noaa.gov/eoi/rsn/graphs/Forecast3DatesMJ03F.png}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:} <IPython.core.display.Image object>
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{k+kn}{import} \PY{n+nn}{xarray} \PY{k}{as} \PY{n+nn}{xr}
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{datetime}
+         \PY{k+kn}{import} \PY{n+nn}{os}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{dates} \PY{k}{as} \PY{n+nn}{dates}
+         \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{pyplot}
+         \PY{k+kn}{from} \PY{n+nn}{pylab} \PY{k}{import} \PY{n}{rcParams}
+         \PY{k+kn}{import} \PY{n+nn}{pickle} \PY{k}{as} \PY{n+nn}{pk}
+         \PY{k+kn}{import} \PY{n+nn}{gc}
+         \PY{k+kn}{import} \PY{n+nn}{requests} 
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{gridspec} \PY{k}{as} \PY{n+nn}{gridspec}
+         \PY{k+kn}{import} \PY{n+nn}{netCDF4} \PY{k}{as} \PY{n+nn}{nc}
+\end{Verbatim}
+
+
+    \hypertarget{for-mad-help-with-pandas-httpschrisalbon.com}{%
+\paragraph{For mad help with Pandas
+https://chrisalbon.com}\label{for-mad-help-with-pandas-httpschrisalbon.com}}
+
+\hypertarget{for-all-sorts-of-great-repos-httpsgithub.comrabernatresearch_computing.git}{%
+\paragraph{For all sorts of great repos
+https://github.com/rabernat/research\_computing.git}\label{for-all-sorts-of-great-repos-httpsgithub.comrabernatresearch_computing.git}}
+
+    \hypertarget{read-downsampled-botpt-data---i-have-made-pickle-files-downsampleing-the-data-to-15s}{%
+\paragraph{Read Downsampled BOTPT Data - I have made pickle files
+downsampleing the data to
+15s}\label{read-downsampled-botpt-data---i-have-made-pickle-files-downsampleing-the-data-to-15s}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/jovyan/data/botpt/bottom\PYZus{}pressure15S\PYZus{}F11.pkl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{E}\PY{p}{:}
+             \PY{n}{botpt\PYZus{}data} \PY{o}{=} \PY{n}{pk}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{E}\PY{p}{)}
+         \PY{n}{df\PYZus{}botpt} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{botpt\PYZus{}data}\PY{p}{)}
+         \PY{n}{df\PYZus{}botpt}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom\PYZus{}pressure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df\PYZus{}botpt}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom\PYZus{}pressure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+         \PY{n}{df\PYZus{}botpt}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{depth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{df\PYZus{}botpt}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom\PYZus{}pressure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{0.670}
+         \PY{c+c1}{\PYZsh{}MJ03F\PYZus{}cal\PYZus{}depths = [MJ03F\PYZus{}pressure * 0.0670 for MJ03F\PYZus{}pressure in MJ03F\PYZus{}pressure]}
+         \PY{c+c1}{\PYZsh{}list comprehention}
+         \PY{n}{epoch}\PY{o}{=} \PY{p}{[}\PY{n}{i}\PY{o}{.}\PY{n}{timestamp}\PY{p}{(}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{df\PYZus{}botpt}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{to\PYZus{}pydatetime}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+         \PY{n}{df\PYZus{}botpt}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{epoch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{epoch}
+         \PY{n}{df\PYZus{}botpt}\PY{o}{=} \PY{n}{df\PYZus{}botpt}\PY{o}{.}\PY{n}{sort\PYZus{}index}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/jovyan/data/botpt/bottom\PYZus{}pressure15S\PYZus{}E11.pkl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{E}\PY{p}{:}
+             \PY{n}{botpt\PYZus{}data} \PY{o}{=} \PY{n}{pk}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{E}\PY{p}{)}
+         \PY{n}{df\PYZus{}botptE} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{botpt\PYZus{}data}\PY{p}{)}
+         \PY{n}{df\PYZus{}botptE}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom\PYZus{}pressure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df\PYZus{}botptE}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom\PYZus{}pressure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+         \PY{n}{df\PYZus{}botptE}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{depth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{df\PYZus{}botptE}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom\PYZus{}pressure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{0.670}
+         \PY{c+c1}{\PYZsh{}MJ03F\PYZus{}cal\PYZus{}depths = [MJ03F\PYZus{}pressure * 0.0670 for MJ03F\PYZus{}pressure in MJ03F\PYZus{}pressure]}
+         \PY{c+c1}{\PYZsh{}list comprehention}
+         \PY{n}{epoch}\PY{o}{=} \PY{p}{[}\PY{n}{i}\PY{o}{.}\PY{n}{timestamp}\PY{p}{(}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{df\PYZus{}botptE}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{to\PYZus{}pydatetime}\PY{p}{(}\PY{p}{)}\PY{p}{]}
+         \PY{n}{df\PYZus{}botptE}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{epoch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{epoch}
+         \PY{n}{df\PYZus{}botptE}\PY{o}{=} \PY{n}{df\PYZus{}botptE}\PY{o}{.}\PY{n}{sort\PYZus{}index}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{c+c1}{\PYZsh{} Diagnostic Commands }
+         \PY{c+c1}{\PYZsh{} len(df\PYZus{}botpt)}
+         \PY{c+c1}{\PYZsh{} len(df\PYZus{}botptE)}
+         \PY{c+c1}{\PYZsh{} df\PYZus{}botpt.tail()}
+         \PY{c+c1}{\PYZsh{} df\PYZus{}botptE.tail()}
+\end{Verbatim}
+
+
+    \hypertarget{cleaning-up-the-dataframe}{%
+\paragraph{Cleaning up the DataFrame}\label{cleaning-up-the-dataframe}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{k}{del} \PY{n}{df\PYZus{}botptE}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{epoch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}botptE}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom\PYZus{}pressure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}botpt}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{epoch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}botpt}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bottom\PYZus{}pressure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{c+c1}{\PYZsh{} x = df\PYZus{}botptE.head()}
+         \PY{c+c1}{\PYZsh{} y = df\PYZus{}botpt.head()}
+         \PY{c+c1}{\PYZsh{} z = pd.merge(x,y,how=\PYZsq{}outer\PYZsq{}, indicator=True, left\PYZus{}index=True, right\PYZus{}index=True)}
+\end{Verbatim}
+
+
+    \hypertarget{merge-botpt-e-and-botpt-f}{%
+\paragraph{Merge BOTPT E and BOTPT F}\label{merge-botpt-e-and-botpt-f}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{test} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}botpt}\PY{p}{,} \PY{n}{df\PYZus{}botptE}\PY{p}{,}\PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{outer}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{indicator}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{left\PYZus{}index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{right\PYZus{}index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{suffixes}\PY{o}{=}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}F}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}E}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{df\PYZus{}botptMerge} \PY{o}{=} \PY{n}{test}\PY{p}{[}\PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}merge}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{both}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}botptMerge}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}merge}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{df\PYZus{}botptMerge} \PY{o}{=} \PY{n}{df\PYZus{}botptMerge}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2016\PYZhy{}12\PYZhy{}1 00:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}10\PYZhy{}31 00:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{c+c1}{\PYZsh{} df\PYZus{}botpt[df\PYZus{}botpt[\PYZsq{}\PYZus{}merge\PYZsq{}] == \PYZsq{}right\PYZus{}only\PYZsq{}]}
+         
+         \PY{c+c1}{\PYZsh{} df\PYZus{}botpt[df\PYZus{}botpt[\PYZsq{}\PYZus{}merge\PYZsq{}] == \PYZsq{}left\PYZus{}only\PYZsq{}]}
+\end{Verbatim}
+
+
+    \hypertarget{calculate-depth-difference}{%
+\paragraph{Calculate Depth
+difference}\label{calculate-depth-difference}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{depthDiff} \PY{o}{=} \PY{n}{df\PYZus{}botptMerge}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{depth\PYZus{}E}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values} \PY{o}{\PYZhy{}} \PY{n}{df\PYZus{}botptMerge}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{depth\PYZus{}F}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{df\PYZus{}botptMerge}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{diff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{depthDiff}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} \PY{c+c1}{\PYZsh{} h2 = df\PYZus{}botptMerge[\PYZsq{}depth\PYZus{}F\PYZsq{}].tolist()}
+         \PY{c+c1}{\PYZsh{} h1 = df\PYZus{}botptMerge[\PYZsq{}depth\PYZus{}E\PYZsq{}].tolist()}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{c+c1}{\PYZsh{} def subtract\PYZus{}lists(h1, h2):}
+         \PY{c+c1}{\PYZsh{}     diff = [a \PYZhy{} b for a,b in zip(h1, h2)]}
+         \PY{c+c1}{\PYZsh{}     return diff}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{c+c1}{\PYZsh{} height = subtract\PYZus{}lists(h1,h2)}
+\end{Verbatim}
+
+
+    \hypertarget{create-time-and-height-vectors-for-plotting}{%
+\paragraph{Create time and height vectors for
+plotting}\label{create-time-and-height-vectors-for-plotting}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{c+c1}{\PYZsh{} time = list(df\PYZus{}botptMerge.index.values)}
+         \PY{c+c1}{\PYZsh{}height = x.tolist()}
+         \PY{n}{height} \PY{o}{=} \PY{n}{df\PYZus{}botptMerge}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{diff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}
+         \PY{n}{time\PYZus{}int} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{time} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{df\PYZus{}botptMerge}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{time}\PY{p}{:}
+             \PY{n}{i} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{datetime64}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{)}
+             \PY{n}{time\PYZus{}int}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dates}\PY{o}{.}\PY{n}{date2num}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mi}{28}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}
+         \PY{n}{hb1} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{hexbin}\PY{p}{(}\PY{n}{time\PYZus{}int}\PY{p}{,} \PY{n}{height}\PY{p}{,} \PY{n}{vmin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{,} \PY{n}{gridsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{1500}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,} \PY{n}{mincnt}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Greens}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidths}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{n}{hb1}\PY{p}{,} \PY{n}{pad} \PY{o}{=} \PY{l+m+mf}{0.01}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2017}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2018}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{31}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+         \PY{n}{years} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{YearLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{months} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{MonthLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{yearsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{monthsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{months}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{monthsFmt}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}locator}\PY{p}{(}\PY{n}{years}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}formatter}\PY{p}{(}\PY{n}{yearsFmt}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{setp}\PY{p}{(}\PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{get\PYZus{}majorticklabels}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}plt.gca().invert\PYZus{}yaxis()}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_30_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{this-method-appears-to-do-a-pretty-good-of-eliminating-the-tidal-signal.-you-can-clearly-see-the-periods-of-deflation-near-92016-22017-12018-and-72018}{%
+\subparagraph{This method appears to do a pretty good of eliminating the
+tidal signal. You can clearly see the periods of deflation near 9/2016,
+2/2017, 1/2018, and
+7/2018}\label{this-method-appears-to-do-a-pretty-good-of-eliminating-the-tidal-signal.-you-can-clearly-see-the-periods-of-deflation-near-92016-22017-12018-and-72018}}
+
+\hypertarget{there-is-more-work-to-do-to-eliminate-the-dropouts-and-calculate-the-differing-rates-of-inflation-or-deflation.}{%
+\subparagraph{There is more work to do to eliminate the dropouts and
+calculate the differing rates of inflation or
+deflation.}\label{there-is-more-work-to-do-to-eliminate-the-dropouts-and-calculate-the-differing-rates-of-inflation-or-deflation.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Figures/2015thruPresent.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<Figure size 432x288 with 0 Axes>
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{df\PYZus{}botptMerge}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{DatetimeIndex}\PY{p}{(}\PY{n}{df\PYZus{}botptMerge}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{o}{.}\PY{n}{date}
+         \PY{c+c1}{\PYZsh{}df\PYZus{}botptMerge.head()}
+\end{Verbatim}
+
+
+    \hypertarget{use-groupby-to-create-one-day-mean-measurements}{%
+\paragraph{Use Groupby to create one day mean
+measurements}\label{use-groupby-to-create-one-day-mean-measurements}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{df\PYZus{}botptMean}\PY{o}{=}\PY{n}{df\PYZus{}botptMerge}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}botptMean}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:}                 depth\_F      depth\_E      diff
+         date                                          
+         2016-12-01  1511.260275  1502.021614 -9.238660
+         2016-12-02  1511.250519  1502.009352 -9.241167
+         2016-12-03  1511.235440  1501.996272 -9.239168
+         2016-12-04  1511.220769  1501.982099 -9.238671
+         2016-12-05  1511.220174  1501.981688 -9.238486
+\end{Verbatim}
+            
+    \hypertarget{create-time-and-height-vectors-for-plotting}{%
+\paragraph{Create time and height vectors for
+plotting}\label{create-time-and-height-vectors-for-plotting}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{c+c1}{\PYZsh{} time = list(df\PYZus{}botptMerge.index.values)}
+         \PY{c+c1}{\PYZsh{}height = x.tolist()}
+         \PY{n}{height} \PY{o}{=} \PY{n}{df\PYZus{}botptMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{diff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}
+         \PY{n}{time\PYZus{}int} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{time} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{df\PYZus{}botptMean}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{time}\PY{p}{:}
+             \PY{n}{i} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{datetime64}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{)}
+             \PY{n}{time\PYZus{}int}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dates}\PY{o}{.}\PY{n}{date2num}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{plot-one-day-measurements.-big-item---ivestigate-the-spikes-and-determine-if-these-are-caused-by-the-electral-image-bill-chadwick-has-documented}{%
+\paragraph{Plot One Day Measurements. Big Item - Ivestigate the spikes
+and determine if these are caused by the electral image Bill Chadwick
+Has
+documented}\label{plot-one-day-measurements.-big-item---ivestigate-the-spikes-and-determine-if-these-are-caused-by-the-electral-image-bill-chadwick-has-documented}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mi}{28}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}
+         \PY{n}{hb1} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time\PYZus{}int}\PY{p}{,} \PY{n}{height}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2017}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2018}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{31}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+         \PY{n}{years} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{YearLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{months} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{MonthLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{yearsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{monthsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{months}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{monthsFmt}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}locator}\PY{p}{(}\PY{n}{years}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}formatter}\PY{p}{(}\PY{n}{yearsFmt}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{setp}\PY{p}{(}\PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{get\PYZus{}majorticklabels}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}plt.gca().invert\PYZus{}yaxis()}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Haley Cabaniss with significant help from Bill Chadwick, Zach Billings,
+Sage Lichtenwainer, and Liana Vaccari
+
+\hypertarget{bill-chadwick-recently-noticed-spikes-in-botpt-data-for-3-of-the-instruments-on-the-cabled-array.-he-notified-dana-manalung-who-attributed-the-spikes-to-a-grounding-problem-in-the-junction-boxes.-during-a-recent-cruise-early-july-2018-the-junction-boxes-were-changed-and-the-3-botpt-instruments-mj03b-mj03b-mj03f-were-grounded-using-an-alternatitve-method.}{%
+\paragraph{Bill Chadwick recently noticed spikes in BOTPT data for 3 of
+the instruments on the cabled array. He notified Dana Manalung, who
+attributed the spikes to a grounding problem in the junction boxes.
+During a recent cruise (early July 2018) the junction boxes were changed
+and the 3 BOTPT instruments (MJ03B, MJ03B, MJ03F) were grounded using an
+alternatitve
+method.}\label{bill-chadwick-recently-noticed-spikes-in-botpt-data-for-3-of-the-instruments-on-the-cabled-array.-he-notified-dana-manalung-who-attributed-the-spikes-to-a-grounding-problem-in-the-junction-boxes.-during-a-recent-cruise-early-july-2018-the-junction-boxes-were-changed-and-the-3-botpt-instruments-mj03b-mj03b-mj03f-were-grounded-using-an-alternatitve-method.}}
+
+\hypertarget{remove-spikes}{%
+\subsection{Remove Spikes}\label{remove-spikes}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{weird\PYZus{}data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{height}\PY{p}{)}
+         \PY{n}{time\PYZus{}array} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{time}\PY{p}{)}
+         
+         \PY{n}{cleaner\PYZus{}data} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{cleaner\PYZus{}time} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} i = 0}
+         \PY{c+c1}{\PYZsh{} while i \PYZlt{} len(weird\PYZus{}data):}
+         \PY{c+c1}{\PYZsh{}     if (weird\PYZus{}data[i] \PYZhy{} weird\PYZus{}data[i\PYZhy{}1] \PYZgt{} 2}
+         
+         \PY{n}{length} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{weird\PYZus{}data}\PY{p}{)}
+         
+         \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{k}{while} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{length}\PY{p}{:}
+             \PY{n}{j} \PY{o}{=} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{2}
+             \PY{k}{while} \PY{n}{j} \PY{o}{\PYZlt{}} \PY{n}{length}\PY{p}{:}
+                 \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{weird\PYZus{}data}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{weird\PYZus{}data}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{o}{.}\PY{l+m+mi}{05}\PY{p}{:}
+                     \PY{n}{cleaner\PYZus{}data}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{weird\PYZus{}data}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+                     \PY{n}{cleaner\PYZus{}time}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{time\PYZus{}array}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}
+                     \PY{k}{break}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{j} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+             \PY{n}{i} \PY{o}{=} \PY{n}{j}
+\end{Verbatim}
+
+
+    \hypertarget{comparison-between-plots-with-and-without-spikes.}{%
+\subsubsection{Comparison between plots with and without
+spikes.}\label{comparison-between-plots-with-and-without-spikes.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}58}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+         \PY{n}{fig3}\PY{p}{,} \PY{p}{(}\PY{n}{ax1}\PY{p}{,}\PY{n}{ax2}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{fig3}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mi}{28}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{)}
+         \PY{n}{hb1} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time\PYZus{}int}\PY{p}{,} \PY{n}{height}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2017}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2018}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{31}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+         \PY{n}{years} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{YearLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{months} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{MonthLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{yearsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{monthsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{months}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{monthsFmt}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}locator}\PY{p}{(}\PY{n}{years}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}formatter}\PY{p}{(}\PY{n}{yearsFmt}\PY{p}{)}
+         
+         \PY{n}{hb1} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{cleaner\PYZus{}time}\PY{p}{,} \PY{n}{cleaner\PYZus{}data}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2017}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2018}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{31}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+         \PY{n}{years} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{YearLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{months} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{MonthLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{yearsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{monthsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{months}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{monthsFmt}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}locator}\PY{p}{(}\PY{n}{years}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}formatter}\PY{p}{(}\PY{n}{yearsFmt}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{setp}\PY{p}{(}\PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{get\PYZus{}majorticklabels}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Removing Outliers}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{32}\PY{p}{,} \PY{n}{color}\PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontweight} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{top}\PY{o}{=}\PY{l+m+mf}{0.90}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}plt.gca().invert\PYZus{}yaxis()}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_43_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{note-this-method-of-removing-the-bad-data-is-imperfect.}{%
+\subsection{Note: this method of removing the bad data is
+imperfect.}\label{note-this-method-of-removing-the-bad-data-is-imperfect.}}
+
+    https://stackoverflow.com/questions/23199796/detect-and-exclude-outliers-in-pandas-dataframe
+
+https://stackoverflow.com/questions/35829364/fixing-inflexion-point-estimate-using-python
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Figures/2018.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<Figure size 432x288 with 0 Axes>
+    \end{verbatim}
+
+    
+    \hypertarget{import-seismic-data}{%
+\paragraph{Import Seismic Data}\label{import-seismic-data}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{n}{seismic\PYZus{}file} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/home/jovyan/data/hypo71\PYZus{}2018.dat}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{df\PYZus{}seismic\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{seismic\PYZus{}file}\PY{p}{,} \PY{n}{delim\PYZus{}whitespace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{object}\PY{p}{)}
+         \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{datetime}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yyyymmdd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{T}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PYZbs{}
+                     \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HHMM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{slice}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{stop}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PYZbs{}
+                     \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HHMM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{slice}\PY{p}{(}\PY{n}{start}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)} 
+         \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{datetime}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+         \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{datetime}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{datetime}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}df\PYZus{}seismic\PYZus{}data = df\PYZus{}seismic\PYZus{}data.loc[\PYZsq{}2017\PYZhy{}01\PYZhy{}1 00:00:00\PYZsq{}:\PYZsq{}2018\PYZhy{}10\PYZhy{}31 00:00:00\PYZsq{}]}
+         \PY{k}{del} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yyyymmdd}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{HHMM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SSS.SS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{NWR}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GAP}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DMIN}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ERH}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ERZ}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ID}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{o}{.}\PY{n}{datetime}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{int64}\PY{p}{)}\PY{o}{.}\PY{n}{values}\PY{o}{/}\PY{l+m+mf}{1e64}
+         \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{DatetimeIndex}\PY{p}{(}\PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{o}{.}\PY{n}{datetime}\PY{p}{)}\PY{o}{.}\PY{n}{date}
+         \PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}61}]:}                     Lat(D     M) Lon(D   M).1 Depth   RMS     PMom     SMom  \textbackslash{}
+         2015-01-22 00:00:00    45  56.81   129  59.92  0.55  0.03  3.8e+17  3.9e+17   
+         2015-01-22 00:08:00    45  56.96   129  59.70  0.00  0.09  1.9e+18  7.8e+17   
+         2015-01-22 02:02:00    45  56.47   130   0.89  0.67  0.03  1.4e+18  7.2e+17   
+         2015-01-22 02:19:00    45  54.93   129  57.59  1.60  0.06  3.3e+18  2.2e+18   
+         2015-01-22 02:36:00    45  56.80   129  59.71  0.51  0.06  6.7e+17  6.8e+17   
+         
+                                        datetime        date  
+         2015-01-22 00:00:00 2015-01-22 00:00:00  2015-01-22  
+         2015-01-22 00:08:00 2015-01-22 00:08:00  2015-01-22  
+         2015-01-22 02:02:00 2015-01-22 02:02:00  2015-01-22  
+         2015-01-22 02:19:00 2015-01-22 02:19:00  2015-01-22  
+         2015-01-22 02:36:00 2015-01-22 02:36:00  2015-01-22  
+\end{Verbatim}
+            
+    \hypertarget{create-dataframe-with-earthquake-frequency-count-per-day}{%
+\paragraph{Create dataframe with Earthquake frequency (count per
+day)}\label{create-dataframe-with-earthquake-frequency-count-per-day}}
+
+\hypertarget{note-days-with-zero-earthquakes-are-not-represented-in-this-timeseries.}{%
+\subparagraph{Note: Days with zero earthquakes are not represented in
+this
+timeseries.}\label{note-days-with-zero-earthquakes-are-not-represented-in-this-timeseries.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{df\PYZus{}eqMean}\PY{o}{=}\PY{n}{df\PYZus{}seismic\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+         \PY{k}{del} \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lat(D}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lon(D}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M).1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Depth}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RMS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{PMom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{k}{del} \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{SMom}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=} \PY{n}{df\PYZus{}eqMean}\PY{o}{.}\PY{n}{datetime}
+         \PY{k}{del} \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{datetime}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{df\PYZus{}eqMean}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n}{df\PYZus{}eqMean}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{name}
+         \PY{n}{df\PYZus{}eqMean}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{k+kc}{None}
+         \PY{c+c1}{\PYZsh{}df\PYZus{}eqMean.head()}
+\end{Verbatim}
+
+
+    \hypertarget{resample.-add-days-to-our-earthquake-data-where-there-were-zero-earthquakes.}{%
+\paragraph{Resample. Add days to our earthquake data where there were
+zero
+earthquakes.}\label{resample.-add-days-to-our-earthquake-data-where-there-were-zero-earthquakes.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{idx} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{date\PYZus{}range}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2017\PYZhy{}01\PYZhy{}1 00:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}10\PYZhy{}31 00:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{s} \PY{o}{=} \PY{n}{df\PYZus{}eqMean}
+         
+         \PY{n}{s}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DatetimeIndex}\PY{p}{(}\PY{n}{s}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+         
+         \PY{n}{s} \PY{o}{=} \PY{n}{s}\PY{o}{.}\PY{n}{reindex}\PY{p}{(}\PY{n}{idx}\PY{p}{,} \PY{n}{fill\PYZus{}value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{create-time-and-count-vectors-earthquake-frequency-vectors-for-plotting}{%
+\paragraph{Create time and count vectors earthquake frequency vectors
+for
+plotting}\label{create-time-and-count-vectors-earthquake-frequency-vectors-for-plotting}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{count} \PY{o}{=} \PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}
+         \PY{n}{time\PYZus{}int} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{n}{time} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{df\PYZus{}eqMean}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{time}\PY{p}{:}
+             \PY{n}{i} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{datetime64}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{)}
+             \PY{n}{time\PYZus{}int}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{dates}\PY{o}{.}\PY{n}{date2num}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{k}{def} \PY{n+nf}{movingaverage}\PY{p}{(}\PY{n}{interval}\PY{p}{,} \PY{n}{window\PYZus{}size}\PY{p}{)}\PY{p}{:}
+             \PY{n}{window}\PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n}{window\PYZus{}size}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n+nb}{float}\PY{p}{(}\PY{n}{window\PYZus{}size}\PY{p}{)}
+             \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{convolve}\PY{p}{(}\PY{n}{interval}\PY{p}{,} \PY{n}{window}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{same}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{c+c1}{\PYZsh{} smooth data using rolling window that chops off 95th percentile }
+         \PY{n}{count\PYZus{}av} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{movingaverage}\PY{p}{(}\PY{n}{df\PYZus{}eqMean}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{21}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+         \PY{n}{fig4}\PY{p}{,} \PY{p}{(}\PY{n}{ax1}\PY{p}{,}\PY{n}{ax2}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{fig4}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mi}{28}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{)}
+         \PY{n}{hb1} \PY{o}{=} \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{cleaner\PYZus{}time}\PY{p}{,} \PY{n}{cleaner\PYZus{}data}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2017}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2018}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{31}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+         \PY{n}{years} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{YearLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{months} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{MonthLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{yearsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{monthsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{months}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{monthsFmt}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}locator}\PY{p}{(}\PY{n}{years}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}formatter}\PY{p}{(}\PY{n}{yearsFmt}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Caldera Inflation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{,} \PY{n}{fontweight} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         
+         \PY{n}{hb1} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time}\PY{p}{,} \PY{n}{count}\PY{p}{)}
+         \PY{n}{hb2} \PY{o}{=} \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{time}\PY{p}{,} \PY{n}{count\PYZus{}av}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2017}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}\PY{n}{datetime}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2018}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{31}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+         \PY{n}{years} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{YearLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{months} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{MonthLocator}\PY{p}{(}\PY{p}{)}
+         \PY{n}{yearsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{monthsFmt} \PY{o}{=} \PY{n}{dates}\PY{o}{.}\PY{n}{DateFormatter}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}locator}\PY{p}{(}\PY{n}{months}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{n}{monthsFmt}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}locator}\PY{p}{(}\PY{n}{years}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}minor\PYZus{}formatter}\PY{p}{(}\PY{n}{yearsFmt}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Daily Seismicity}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{,} \PY{n}{fontweight} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{setp}\PY{p}{(}\PY{n}{ax1}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{get\PYZus{}majorticklabels}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{90}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Comparison Between Inflation and Seismicity}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{32}\PY{p}{,} \PY{n}{color}\PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontweight} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{top}\PY{o}{=}\PY{l+m+mf}{0.90}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}plt.gca().invert\PYZus{}yaxis()}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_58_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{comparison-of-earthquake-frequency-and-inflation-rate}{%
+\paragraph{Comparison of Earthquake Frequency and Inflation
+Rate}\label{comparison-of-earthquake-frequency-and-inflation-rate}}
+
+    \hypertarget{goals}{%
+\section{Goals:}\label{goals}}
+
+\hypertarget{in-order-to-better-understand-the-patterns-of-magma-storage-and-delivery-beneath-the-axial-summit-caldera-and-provide-constraints-for-the-development-of-improved-predictive-models-we-are-examining-short-term-variations-in-the-rates-of-deformation-and-seismicity-and-how-well-they-co-vary-during-the-inter-eruption-time-period.-we-will-also-investigate-apparent-pauses-in-the-magma-supply-rate-when-the-rate-of-seismicity-and-deformation-have-both-dropped.}{%
+\paragraph{In order to better understand the patterns of magma storage
+and delivery beneath the Axial summit caldera and provide constraints
+for the development of improved predictive models, we are examining
+short-term variations in the rates of deformation and seismicity and how
+well they co-vary during the inter-eruption time period. We will also
+investigate apparent ``pauses'' in the magma supply rate when the rate
+of seismicity and deformation have both
+dropped.}\label{in-order-to-better-understand-the-patterns-of-magma-storage-and-delivery-beneath-the-axial-summit-caldera-and-provide-constraints-for-the-development-of-improved-predictive-models-we-are-examining-short-term-variations-in-the-rates-of-deformation-and-seismicity-and-how-well-they-co-vary-during-the-inter-eruption-time-period.-we-will-also-investigate-apparent-pauses-in-the-magma-supply-rate-when-the-rate-of-seismicity-and-deformation-have-both-dropped.}}
+
+\hypertarget{analytical-next-steps-and-questions}{%
+\subsubsection{Analytical Next Steps and
+Questions}\label{analytical-next-steps-and-questions}}
+
+\hypertarget{create-model-that-predicts-function-that-predicts-seismisity-increases-with-the-total-inflation.-empericlly-background-rate-some-exponential-function}{%
+\paragraph{1. Create model that predicts function that predicts
+seismisity increases with the total inflation\ldots{}. empericlly
+background rate + some exponential function
++}\label{create-model-that-predicts-function-that-predicts-seismisity-increases-with-the-total-inflation.-empericlly-background-rate-some-exponential-function}}
+
+\hypertarget{most-things-in-nature-are-low-pass-filters-low-pass-filter-the-top-signal-and-compare-it-to-bottom-signal-over-filt-filt-back-and-forth.-filter-the-top-one-and-cross-correlate-with-the-bottom-one.-how-does-the-frequency-content-of-top-correlate-the-frequency-content-the-bottom-one-bandpass-if-you-take-the-dc-component-out-of-the-top-signal-then-you-low-pass-filter-it-it-might-look-very-much-like-the-bottom-one.}{%
+\paragraph{2. Most things in nature are low pass filters\ldots{} low
+pass filter the top signal and compare it to bottom signal over \ldots{}
+filt filt back and forth. Filter the top one and cross correlate with
+the bottom one. How does the frequency content of top correlate the
+frequency content the bottom one? Bandpass\ldots{} if you take the dc
+component out of the top signal, then you low pass filter it it might
+look very much like the bottom
+one.}\label{most-things-in-nature-are-low-pass-filters-low-pass-filter-the-top-signal-and-compare-it-to-bottom-signal-over-filt-filt-back-and-forth.-filter-the-top-one-and-cross-correlate-with-the-bottom-one.-how-does-the-frequency-content-of-top-correlate-the-frequency-content-the-bottom-one-bandpass-if-you-take-the-dc-component-out-of-the-top-signal-then-you-low-pass-filter-it-it-might-look-very-much-like-the-bottom-one.}}
+
+\hypertarget{do-we-see-peak-flow-rates-when-this-pressure-relaxes-.-camera-flow-rates-conductivity-probles-thermister-array.-covis.-where-is-the-magma-going-do-we-see-any-evidence-that-the-permeabilty-structure-changes-as-the-seafloor-deflates.}{%
+\paragraph{3. Do we see peak flow rates when this pressure relaxes?
+\ldots{}. Camera Flow Rates\ldots{} conductivity probles, thermister
+array\ldots{}. Covis\ldots{}. Where is the magma going? Do we see any
+evidence that the permeabilty structure changes as the seafloor
+deflates.}\label{do-we-see-peak-flow-rates-when-this-pressure-relaxes-.-camera-flow-rates-conductivity-probles-thermister-array.-covis.-where-is-the-magma-going-do-we-see-any-evidence-that-the-permeabilty-structure-changes-as-the-seafloor-deflates.}}
+
+\hypertarget{did-we-see-short-term-deflation-in-the-lead-up-to-the-last-eruption}{%
+\paragraph{4. Did we see short term deflation in the lead up to the last
+eruption?}\label{did-we-see-short-term-deflation-in-the-lead-up-to-the-last-eruption}}
+
+\hypertarget{can-we-improve-on-the-spike-removal-method-how-can-we-do-this-better}{%
+\paragraph{5. Can we improve on the spike removal method? How can we do
+this
+better?}\label{can-we-improve-on-the-spike-removal-method-how-can-we-do-this-better}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df\PYZus{}eqMean}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df\PYZus{}botptMean}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    https://hvplot.pyviz.org/user\_guide/Introduction.html
+
+https://hvplot.pyviz.org/user\_guide/Plotting.html
+
+https://hvplot.pyviz.org/user\_guide/Subplots.html
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{hvplot}\PY{n+nn}{.}\PY{n+nn}{pandas}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df\PYZus{}botptMean}\PY{o}{.}\PY{n}{hvplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{diff}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{+} \PY{n}{df\PYZus{}botptMean}\PY{o}{.}\PY{n}{hvplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{depth\PYZus{}E}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{experimental-playground-everything-beneath-this-point-is-code-and-analysis-i-am-experimenting-with.}{%
+\subsection{Experimental Playground: Everything beneath this point is
+code and analysis I am experimenting
+with.}\label{experimental-playground-everything-beneath-this-point-is-code-and-analysis-i-am-experimenting-with.}}
+
+    \hypertarget{identify-inflection-points-for-inflation}{%
+\paragraph{Identify inflection points for
+inflation}\label{identify-inflection-points-for-inflation}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{def} \PY{n+nf}{turningpoints}\PY{p}{(}\PY{n}{cleaner\PYZus{}data}\PY{p}{)}\PY{p}{:}
+            \PY{n}{dx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{cleaner\PYZus{}data}\PY{p}{)}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{dx}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]} \PY{o}{*} \PY{n}{dx}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{def} \PY{n+nf}{turning\PYZus{}points}\PY{p}{(}\PY{n}{array}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{} turning\PYZus{}points(array) \PYZhy{}\PYZgt{} min\PYZus{}indices, max\PYZus{}indices}
+        \PY{l+s+sd}{    Finds the turning points within an 1D array and returns the indices of the minimum and }
+        \PY{l+s+sd}{    maximum turning points in two separate lists.}
+        \PY{l+s+sd}{    \PYZsq{}\PYZsq{}\PYZsq{}}
+            \PY{n}{idx\PYZus{}max}\PY{p}{,} \PY{n}{idx\PYZus{}min} \PY{o}{=} \PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{p}{]}
+            \PY{k}{if} \PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{array}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{:} 
+                \PY{k}{return} \PY{n}{idx\PYZus{}min}\PY{p}{,} \PY{n}{idx\PYZus{}max}
+        
+            \PY{n}{NEUTRAL}\PY{p}{,} \PY{n}{RISING}\PY{p}{,} \PY{n}{FALLING} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}
+            \PY{k}{def} \PY{n+nf}{get\PYZus{}state}\PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n}{a} \PY{o}{\PYZlt{}} \PY{n}{b}\PY{p}{:} \PY{k}{return} \PY{n}{RISING}
+                \PY{k}{if} \PY{n}{a} \PY{o}{\PYZgt{}} \PY{n}{b}\PY{p}{:} \PY{k}{return} \PY{n}{FALLING}
+                \PY{k}{return} \PY{n}{NEUTRAL}
+        
+            \PY{n}{ps} \PY{o}{=} \PY{n}{get\PYZus{}state}\PY{p}{(}\PY{n}{array}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{array}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+            \PY{n}{begin} \PY{o}{=} \PY{l+m+mi}{1}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{array}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                \PY{n}{s} \PY{o}{=} \PY{n}{get\PYZus{}state}\PY{p}{(}\PY{n}{array}\PY{p}{[}\PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{array}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+                \PY{k}{if} \PY{n}{s} \PY{o}{!=} \PY{n}{NEUTRAL}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{ps} \PY{o}{!=} \PY{n}{NEUTRAL} \PY{o+ow}{and} \PY{n}{ps} \PY{o}{!=} \PY{n}{s}\PY{p}{:}
+                        \PY{k}{if} \PY{n}{s} \PY{o}{==} \PY{n}{FALLING}\PY{p}{:} 
+                            \PY{n}{idx\PYZus{}max}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{begin} \PY{o}{+} \PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}\PY{p}{)}
+                        \PY{k}{else}\PY{p}{:}
+                            \PY{n}{idx\PYZus{}min}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{begin} \PY{o}{+} \PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}\PY{p}{)}
+                    \PY{n}{begin} \PY{o}{=} \PY{n}{i}
+                    \PY{n}{ps} \PY{o}{=} \PY{n}{s}
+            \PY{k}{return} \PY{n}{idx\PYZus{}min}\PY{p}{,} \PY{n}{idx\PYZus{}max}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n+nb}{sum}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{turning\PYZus{}points}\PY{p}{(}\PY{n}{cleaner\PYZus{}data}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{example-cross-correlation}{%
+\paragraph{Example Cross-Correlation}\label{example-cross-correlation}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k}{import} \PY{n}{signal}
+        \PY{n}{sig} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{p}{[}\PY{l+m+mf}{0.}\PY{p}{,} \PY{l+m+mf}{1.}\PY{p}{,} \PY{l+m+mf}{1.}\PY{p}{,} \PY{l+m+mf}{0.}\PY{p}{,} \PY{l+m+mf}{1.}\PY{p}{,} \PY{l+m+mf}{0.}\PY{p}{,} \PY{l+m+mf}{0.}\PY{p}{,} \PY{l+m+mf}{1.}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{128}\PY{p}{)}
+        \PY{n}{sig\PYZus{}noise} \PY{o}{=} \PY{n}{sig} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sig}\PY{p}{)}\PY{p}{)}
+        \PY{n}{corr} \PY{o}{=} \PY{n}{signal}\PY{o}{.}\PY{n}{correlate}\PY{p}{(}\PY{n}{sig\PYZus{}noise}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{l+m+mi}{128}\PY{p}{)}\PY{p}{,} \PY{n}{mode}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{same}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{128}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{n}{clock} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{l+m+mi}{64}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{sig}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{128}\PY{p}{)}
+        \PY{n}{fig}\PY{p}{,} \PY{p}{(}\PY{n}{ax\PYZus{}orig}\PY{p}{,} \PY{n}{ax\PYZus{}noise}\PY{p}{,} \PY{n}{ax\PYZus{}corr}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{sharex}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{n}{ax\PYZus{}orig}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sig}\PY{p}{)}
+        \PY{n}{ax\PYZus{}orig}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{clock}\PY{p}{,} \PY{n}{sig}\PY{p}{[}\PY{n}{clock}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ro}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax\PYZus{}orig}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Original signal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax\PYZus{}noise}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sig\PYZus{}noise}\PY{p}{)}
+        \PY{n}{ax\PYZus{}noise}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Signal with noise}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax\PYZus{}corr}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{corr}\PY{p}{)}
+        \PY{n}{ax\PYZus{}corr}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{clock}\PY{p}{,} \PY{n}{corr}\PY{p}{[}\PY{n}{clock}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ro}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax\PYZus{}corr}\PY{o}{.}\PY{n}{axhline}\PY{p}{(}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{n}{ls}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax\PYZus{}corr}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cross\PYZhy{}correlated with rectangular pulse}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax\PYZus{}orig}\PY{o}{.}\PY{n}{margins}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
+        \PY{n}{fig}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+        \PY{n}{fig}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{cross-correlate-smoothed-seismic-with-smoothed-inflation}{%
+\paragraph{Cross Correlate Smoothed Seismic with Smoothed
+Inflation}\label{cross-correlate-smoothed-seismic-with-smoothed-inflation}}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
